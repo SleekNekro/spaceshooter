@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://iihjgxmf67lh"]
+
+[ext_resource type="PackedScene" uid="uid://cmnksdd0x6vbr" path="res://parallax_background.tscn" id="1_kdhf8"]
+[ext_resource type="Script" path="res://game.gd" id="1_udtn4"]
+[ext_resource type="PackedScene" uid="uid://hp2id1u88ona" path="res://player.tscn" id="2_ds06e"]
+
+[sub_resource type="Theme" id="Theme_cq7su"]
+default_font_size = 50
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_udtn4")
+
+[node name="background" parent="." instance=ExtResource("1_kdhf8")]
+
+[node name="player" parent="." instance=ExtResource("2_ds06e")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[node name="text_game_over" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 308.0
+offset_right = 424.0
+offset_bottom = 380.0
+theme = SubResource("Theme_cq7su")
+text = "GAME OVER"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
